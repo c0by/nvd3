@@ -284,7 +284,8 @@ nv.models.lineChart = function() {
               allData[indexToHighlight].highlight = true;
           }
 
-          var xValue = xAxis.tickFormat()(chart.x()(singlePoint,pointIndex));
+          // pass the raw X point value, tickFormat can be appled in the tooltip or custom override
+          var xValue = chart.x()(singlePoint,pointIndex);
           interactiveLayer.tooltip
                   .position({left: pointXLocation + margin.left, top: e.mouseY + margin.top})
                   .chartContainer(that.parentNode)
