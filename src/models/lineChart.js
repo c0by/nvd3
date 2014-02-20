@@ -153,6 +153,7 @@ nv.models.lineChart = function() {
       gEnter.append('g').attr('class', 'nv-legendWrap');
       gEnter.append('g').attr('class', 'nv-interactive');
 
+
       g.select("rect")
         .attr("width",availableWidth)
         .attr("height",(availableHeight > 0) ? availableHeight : 0);
@@ -171,9 +172,8 @@ nv.models.lineChart = function() {
           availableHeight = (height || parseInt(container.style('height')) || 400)
                              - margin.top - margin.bottom;
         }
-
         wrap.select('.nv-legendWrap')
-            .attr('transform', 'translate(0,' + (-margin.top) +')')
+            .attr('transform', 'translate(-30,' + (availableHeight+30) +')')
       }
 
       //------------------------------------------------------------
@@ -228,7 +228,7 @@ nv.models.lineChart = function() {
 
 
       var avgLines = g.select(".nv-avgLinesWrap").selectAll("line")
-              .data(avgLineData, function(d) { console.log(d.key); return d.key; });
+              .data(avgLineData, function(d) { return d.key; });
 
       var getAvgLineY = function(d) {
           //If average lines go off the svg element, clamp them to the svg bounds.
@@ -240,8 +240,8 @@ nv.models.lineChart = function() {
 
       avgLines.enter()
               .append('line')
-              .style('stroke-width',2)
-              .style('stroke-dasharray','10,10')
+              .style('stroke-width',1)
+              .style('stroke-dasharray','1,1')
               .style('stroke',function (d,i) {
                   return lines.color()(d,d.seriesIndex);
               })
